@@ -155,7 +155,7 @@ db.places
         type: "Point",
         coordinates: [48.83279, 2.38884],
       },
-      $minDistance: 20,
+      $minDistance: 0,
       $maxDistance: 5000,
     },
   })
