@@ -120,3 +120,44 @@ db.places
   })
   .pretty();
 ```
+
+faire une zone ou deux point son inclus et un point exclu:
+
+```js
+db.places
+  .find({
+    location: {
+      $geoWithin: {
+        $geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [48.85352, 2.34915],
+              [48.85201, 2.35462],
+              [48.83414, 2.32832],
+              [48.83162, 2.33363],
+            ],
+          ],
+        },
+      },
+    },
+  })
+  .pretty();
+```
+
+En partent d'un point, Trouver les point dans un rayon de 5km:
+
+```js
+db.places
+  .find({
+    $nearSphere: {
+      $geometry: {
+        type: "Point",
+        coordinates: [48.83279, 2.38884],
+      },
+      $minDistance: 20,
+      $maxDistance: 5000,
+    },
+  })
+  .pretty();
+```
